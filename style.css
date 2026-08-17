@@ -1,68 +1,103 @@
-@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@500&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500&display=swap');
 
-*{
+* {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
     font-family: 'Poppins', sans-serif;
 }
 
-body{
+body {
     width: 100%;
     height: 100vh;
     display: flex;
     justify-content: center;
     align-items: center;
+    /* Your original gradient - it looks great behind glass! */
     background: linear-gradient(45deg, #5ff1be, #09090a);
 }
 
-.calculator{
-    border: 1px solid #105efa;
+/* --- The Frosted Glass Calculator Container --- */
+.calculator {
     padding: 20px;
-    border-radius: 16px;
-    background: transparent;
-    box-shadow: 0px 3px 15px rgba(48, 110, 234, 0.5);
-
+    border-radius: 24px; /* Slightly softer corners for iOS feel */
+    
+    /* Glassmorphism Magic */
+    background: rgba(255, 255, 255, 0.05); /* Very subtle white tint */
+    backdrop-filter: blur(20px); /* The frosted glass effect */
+    -webkit-backdrop-filter: blur(20px); /* Safari support */
+    
+    /* A translucent border mimics light hitting the edge of the glass */
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    
+    /* A soft, deep shadow to make it float */
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.3);
 }
 
-input{
+/* --- The Calculator Display --- */
+input {
     width: 320px;
     border: none;
-    padding: 24px;
+    padding: 24px 10px;
     margin: 10px;
-    background: transparent;
-    box-shadow: 0px 3px 15px rgbs(84, 84, 84, 0.1);
-    font-size: 40px;
+    background: transparent; /* Lets the glass show through */
+    font-size: 48px;
+    font-weight: 500;
     text-align: right;
-    cursor: pointer;
+    cursor: default; /* Displays usually shouldn't show a text cursor */
+    color: #ffffff;
+    outline: none; /* Removes the blue outline when clicked */
+}
+
+input::placeholder {
     color: #ffffff;
 }
 
-input::placeholder{
-    color: #ffffff;
-}
-
-button{
-    border: none;
+/* --- The Glass Circular Buttons --- */
+button {
     width: 60px;
     height: 60px;
     margin: 10px;
     border-radius: 50%;
-    background: color(srgb rgb(255, 15, 15) green blue);
-    color: #fb8650;
-    font-size: 20px;
-    box-shadow: -8px -8px 15px rgba(61, 234, 194, 0.1);
+    
+    /* Glass button styling */
+    background: rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(4px);
+    -webkit-backdrop-filter: blur(4px);
+    
+    color: #ffffff;
+    font-size: 24px;
     cursor: pointer;
+    
+    /* Smooth animations for hovering and clicking */
+    transition: background 0.2s ease, transform 0.1s ease;
 }
 
-.equalBtn{
-    background-color: #fb7c14;
+/* Hover and Click states make it feel interactive and tactile */
+button:hover {
+    background: rgba(255, 255, 255, 0.2);
 }
 
-.operator{
-    color: #6dee0a;
+button:active {
+    transform: scale(0.92); /* Satisfying shrink effect when pressed */
 }
-.button {
-    background-color: rgb(33, 33, 43);
-  }
-  
+
+/* --- Special Accent Buttons --- */
+.equalBtn {
+    /* Kept your original orange, but made it slightly translucent */
+    background: rgba(251, 124, 20, 0.85); 
+    border-color: rgba(251, 124, 20, 0.4);
+}
+
+.equalBtn:hover {
+    background: rgba(251, 124, 20, 1);
+}
+
+.operator {
+    /* Using a brighter white with a higher opacity to stand out, 
+       or you can change this color to match your green gradient */
+    background: rgba(255, 255, 255, 0.2);
+    color: #5ff1be; /* Mint green text for math operators */
+    font-weight: 500;
+}
