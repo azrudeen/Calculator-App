@@ -14,12 +14,52 @@ body {
     justify-content: center;
     align-items: center;
     
-    /* Dynamic mesh gradient matching the target image */
-    background-color: #0f1c16; 
-    background-image: 
-        radial-gradient(circle at 10% 40%, rgba(95, 241, 190, 0.25) 0%, transparent 60%),
-        radial-gradient(circle at 90% 30%, rgba(196, 187, 166, 0.35) 0%, transparent 50%),
-        radial-gradient(circle at 50% 90%, rgba(25, 45, 35, 0.8) 0%, transparent 60%);
+    /* A very dark, rich green as the base */
+    background-color: #0c1a14; 
+    
+    /* Keep the glowing elements from making the page scroll */
+    overflow: hidden; 
+    position: relative;
+    z-index: 1;
+}
+
+/* Create the sweeping Mint Green aurora beam */
+body::before {
+    content: '';
+    position: absolute;
+    top: -10%;
+    left: 10%;
+    width: 70vw;
+    height: 60vh;
+    background: #5ff1be;
+    border-radius: 50%;
+    
+    /* This massive blur is the secret to the fluid look */
+    filter: blur(150px);
+    -webkit-filter: blur(150px);
+    
+    opacity: 0.35;
+    z-index: -1;
+    transform: rotate(-25deg) scaleY(0.5); /* Flattens it into a sweeping beam */
+}
+
+/* Create the warm Beige/Gold aurora beam */
+body::after {
+    content: '';
+    position: absolute;
+    bottom: -10%;
+    right: -10%;
+    width: 60vw;
+    height: 60vh;
+    background: #c4bba6;
+    border-radius: 50%;
+    
+    filter: blur(140px);
+    -webkit-filter: blur(140px);
+    
+    opacity: 0.25;
+    z-index: -1;
+    transform: rotate(45deg) scaleY(0.6);
 }
 
 .container {
@@ -144,7 +184,14 @@ button:active {
 
 /* --- Footer Watermark --- */
 .footer-text {
-    color: rgba(255, 255, 255, 0.4);
-    font-size: 14px;
+    position: absolute; /* Anchors it to the screen */
+    bottom: 32px; /* Distance from the bottom edge */
+    left: 50%;
+    transform: translateX(-50%); /* Perfectly centers it horizontally */
+    
+    color: rgba(255, 255, 255, 0.35); /* Soft, faded white */
+    font-size: 13px;
+    font-weight: 300;
     letter-spacing: 0.5px;
+    z-index: 10; /* Ensures it stays above the background */
 }
